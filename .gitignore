@@ -104,3 +104,4 @@ ENV/
 .mypy_cache/
 
 /p1_navigation/Banana_Linux
+/p2_continuous-control/Reacher_Linux
