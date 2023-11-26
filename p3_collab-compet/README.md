@@ -36,6 +36,11 @@ The environment is considered solved, when the average (over 100 episodes) of th
     (_For AWS_) If you'd like to train the agent on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P3/Tennis/Tennis_Linux_NoVis.zip) to obtain the "headless" version of the environment.  You will **not** be able to watch the agent without enabling a virtual screen, but you will be able to train the agent.  (_To watch the agent, you should follow the instructions to [enable a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the **Linux** operating system above._)
 
 2. Place the file in the DRLND GitHub repository, in the `p3_collab-compet/` folder, and unzip (or decompress) the file. 
+2. Place the file in the course GitHub repository, in the `p3_collab-compet/` folder, and unzip (or decompress) the file. In the `Tennis_solution.ipynb` change the cell 
+    ```python
+   env = UnityEnvironment(file_name="p3_collab-compet/Tennis_Linux/Tennis.x86_64")
+   ```
+   with the file name and folder corresponding to your operating system
 
 ### Instructions
 
@@ -60,3 +65,23 @@ You need only select the environment that matches your operating system:
 Then, place the file in the `p3_collab-compet/` folder in the DRLND GitHub repository, and unzip (or decompress) the file.  Next, open `Soccer.ipynb` and follow the instructions to learn how to use the Python API to control the agent.
 
 (_For AWS_) If you'd like to train the agents on AWS (and have not [enabled a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md)), then please use [this link](https://s3-us-west-1.amazonaws.com/udacity-drlnd/P3/Soccer/Soccer_Linux_NoVis.zip) to obtain the "headless" version of the environment.  You will **not** be able to watch the agents without enabling a virtual screen, but you will be able to train the agents.  (_To watch the agents, you should follow the instructions to [enable a virtual screen](https://github.com/Unity-Technologies/ml-agents/blob/master/docs/Training-on-Amazon-Web-Service.md), and then download the environment for the **Linux** operating system above._)
+
+### Description
+
+*   The complete code is inside the `Tennis.ipynb` or `Tennis_solution.ipynb` running the cells in order will 
+    *   Create the environment ( do not close unity window if it stays loading for too long as you need to run the other cells while it's open )
+    *   Define the Actor and Critic
+    *   Define the Agent an initialise it
+    *   Define ddpg algoritm
+    *   Train the agents
+    *   Explore the result
+    *   Test the model in inference mode
+    *   Close the environment ( this will close the unity window )
+*   The base implementation is based on `deep-reinforcement-learning` [implementation](https://github.com/udacity/deep-reinforcement-learning/tree/master/ddpg-pendulum) of ddpg 
+*   This repo contains these files :
+    - `checkpoint_actor_2_agents.pth`: Model's weights for the Actor model
+    - `checkpoint_critic_2_agents.pth`: Model's weights for the Critic model
+    - `Tennis.ipynb`: notebook containing the solution
+    - `maddpg_scores_plot_curve.png`: Evolution score during training of the model.
+    - `Tennis_solution.ipynb`: Notebook containing the solution.
+    - `requirements.txt`: To run the project the dependencies required are in the `requirements.txt` file that will be used to create an environment using this command and change the needed fields: `$ conda create --name <env> --file requirements.txt`.

@@ -21,37 +21,37 @@ WEIGHT_DECAY = 0        # L2 weight decay
 device = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
 class MaddpgAgent():
-    def __init__(self, state_size, action_size,  random_seed, n_agents):
+    def __init__(self, state_size, action_size,  seed, n_agents):
         """Initialize an Agent object.
 
         Params
         ======
             state_size (int): dimension of each state
             action_size (int): dimension of each action
-            random_seed (int): random seed
+            seed (int): random seed
             n_agents: number of agents it will control in the environment
         """
         self.state_size = state_size
         self.action_size = action_size
-        self.random_seed = np.random.seed(random_seed)
+        self.random_seed = np.random.seed(seed)
         self.n_agents = n_agents
 
         # Actor Network (w/ Target Network)
-        self.actor_local = Actor(state_size, action_size,  seed=random_seed).to(device)
-        self.actor_target = Actor(state_size, action_size,  seed=random_seed).to(device)
+        self.actor_local = Actor(state_size, action_size,  seed=seed).to(device)
+        self.actor_target = Actor(state_size, action_size,  seed=seed).to(device)
         self.actor_optimizer = optim.Adam(self.actor_local.parameters(), lr=LR_ACTOR)
 
         # Critic Network (w/ Target Network)
-        self.critic_local = Critic(state_size, action_size, seed=random_seed).to(device)
-        self.critic_target = Critic(state_size, action_size,  seed=random_seed).to(device)
+        self.critic_local = Critic(state_size, action_size, seed=seed).to(device)
+        self.critic_target = Critic(state_size, action_size,  seed=seed).to(device)
         self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC,weight_decay=WEIGHT_DECAY)
         # self.critic_optimizer = optim.Adam(self.critic_local.parameters(), lr=LR_CRITIC, weight_decay=WEIGHT_DECAY)
 
         # Noise process
-        self.noise = OUNoise(action_size, random_seed)
+        self.noise = OUNoise(action_size, seed)
 
         # Replay memory
-        self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, random_seed)
+        self.memory = ReplayBuffer(action_size, BUFFER_SIZE, BATCH_SIZE, seed)
         self.current_step = 0 
 
     def step(self, states, actions, rewards, next_states, dones):
