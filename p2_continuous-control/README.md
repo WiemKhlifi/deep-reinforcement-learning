@@ -84,4 +84,4 @@ The environment is considered solved, when the average (over 100 episodes) of th
     - `checkpoint_critic_20_agents.pth`: Model's weights for the Critic model.
     - `Continuous_Control_solution.ipynb`: Notebook containing the solution.
     - `scores_plot.png`: Evolution score during training of the model.
-*   To run the project the dependencies required are in the `requirements.txt` file with instructions how to create conda environment.
+*   To run the project the dependencies required are in the `requirements.txt` file that will be used to create an environment using this command and change the needed fields: `$ conda create --name <env> --file requirements.txt`
